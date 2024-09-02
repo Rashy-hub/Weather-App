@@ -1,0 +1,11 @@
+{
+    "wheaterapi": {
+        "name": "default",
+        "key": "a4f280790fd1def0d8ce41cc39dff80d",
+        "base": "https://api.openweathermap.org/data/3.0"
+    },
+    "geoapi": {
+        "key": "a4f280790fd1def0d8ce41cc39dff80d",
+        "base": "http://api.openweathermap.org/geo/1.0"
+    }
+}
