@@ -1,47 +1,41 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { useGetWeatherByCityMutation } from '../api/weatherApiSlice'
+const SearchGeo = ({ onSearchSubmit }) => {
+  const [searched, setSearched] = useState('');
 
-const SearchGeo = () => {
-    const [searched, setSearched] = useState('')
+  const onSearchHandler = (event) => {
+    setSearched(event.target.value);
+  };
 
-    const [getWeatherByCity, { data, isLoading, isError }] =
-        useGetWeatherByCityMutation(searched)
-
-    const onSearchHandler = (event) => {
-        setSearched(event.target.value)
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (searched.trim()) {
+      onSearchSubmit(searched);
     }
-    const onSearchSubmit = (event) => {
-        event.preventDefault()
-        getWeatherByCity(searched)
+  };
 
-        console.log('submit to weather api')
-        //  setSearched('')
-    }
+  return (
+    <form onSubmit={onSubmit} className="flex items-center mt-4">
+      <input
+        type="text"
+        name="search"
+        id="search"
+        value={searched}
+        placeholder="Enter city name"
+        onChange={onSearchHandler}
+        required
+        className="border-2 rounded-xl border-black p-2 m-2"
+      />
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded-xl">
+        Get the Weather
+      </button>
+    </form>
+  );
+};
 
-    let content = ''
-    if (isLoading) content = <p>Loading...</p>
-    else if (isError) content = <p>Error</p>
-    else if (data && data.length != 0) content = <p>{JSON.stringify(data)}</p>
-    else content = <p>{searched} does not exists</p>
+SearchGeo.propTypes = {
+  onSearchSubmit: PropTypes.func.isRequired
+};
 
-    return (
-        <>
-            <form onSubmit={onSearchSubmit}>
-                <input
-                    type="text"
-                    name="search"
-                    id="search"
-                    value={searched}
-                    placeholder="city name"
-                    onChange={onSearchHandler}
-                    required
-                />
-                <input type="submit" value="Get the Meteo" />
-            </form>
-            <div>{content}</div>
-        </>
-    )
-}
-
-export default SearchGeo
+export default SearchGeo;

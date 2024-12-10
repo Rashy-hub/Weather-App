@@ -1,19 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import utils from '../data/utils.json'
+const weatherBaseUrl = import.meta.env.VITE_WEATHER_API_BASE;
+const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
 export const weatherApi = createApi({
-    reducerPath: 'weatherApi',
-    baseQuery: fetchBaseQuery({ baseUrl: utils.geoapi.base }),
-    endpoints: (builder) => ({
-        getWeatherByCity: builder.mutation({
-            query: (city) => ({
-                url: 'direct',
-                method: 'GET',
-                params: { q: city, limit: 1, appid: utils.geoapi.key },
-            }),
-        }),
-    }),
-})
+  reducerPath: 'weatherApi',
+  baseQuery: fetchBaseQuery({ baseUrl: weatherBaseUrl }),
+  endpoints: (builder) => ({
+    getWeatherByGeo: builder.mutation({
+      query: ({ lat, lon }) => ({
+        url: 'data/3.0/onecall',
+        method: 'GET',
+        params: { lat, lon, appid: weatherApiKey }
+      })
+    })
+  })
+});
 
-export const { useGetWeatherByCityMutation } = weatherApi
+export const { useGetWeatherByGeoMutation } = weatherApi;

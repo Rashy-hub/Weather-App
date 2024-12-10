@@ -1,22 +1,12 @@
-import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
-import SearchGeo from '../components/SearchGeo'
+const Main = ({ children, className = '' }) => {
+  return <main className={className}>{children}</main>;
+};
 
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-`
+Main.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
 
-const Main = () => {
-    return (
-        <StyledContainer>
-            <SearchGeo />
-        </StyledContainer>
-    )
-}
-
-export default Main
+export default Main;

@@ -1,9 +1,11 @@
-import InfoFoot from '../components/InfoFoot'
+import InfoFoot from '../components/InfoFoot';
 
 const Footer = () => {
   return (
-    <InfoFoot/>
-  )
-}
+    <footer>
+      <InfoFoot />
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

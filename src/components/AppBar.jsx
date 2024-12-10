@@ -1,14 +1,7 @@
-import styled from 'styled-components'
-
-const StyledAppBar = styled.h1`
-    color: #5843e4;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Impact, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-`
 const AppBar = () => {
-    return <StyledAppBar>Weather Api</StyledAppBar>
-}
+  return (
+    <h1 className="text-center text-purple-700 font-bold text-4xl font-impact">Weather Api</h1>
+  );
+};
 
-export default AppBar
+export default AppBar;
