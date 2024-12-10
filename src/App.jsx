@@ -65,7 +65,9 @@ function App() {
               <td className="py-2 px-4 border">{data[0].name}</td>
               <td className="py-2 px-4 border">{data[0].lon}</td>
               <td className="py-2 px-4 border">{data[0].lat}</td>
-              <td className="py-2 px-4 border">{JSON.stringify(meteo)}</td>
+              <td className="py-2 px-4 border">
+                {parseFloat(meteo.main.temp - 273, 15).toFixed(2)}°C
+              </td>
             </tr>
           </tbody>
         </table>

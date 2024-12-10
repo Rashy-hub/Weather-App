@@ -9,7 +9,7 @@ export const weatherApi = createApi({
   endpoints: (builder) => ({
     getWeatherByGeo: builder.mutation({
       query: ({ lat, lon }) => ({
-        url: 'data/3.0/onecall',
+        url: 'data/2.5/weather',
         method: 'GET',
         params: { lat, lon, appid: weatherApiKey }
       })
